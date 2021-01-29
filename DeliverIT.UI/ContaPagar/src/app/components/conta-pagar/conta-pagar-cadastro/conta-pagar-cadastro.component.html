@@ -1,0 +1,36 @@
+
+<br>
+<mat-card>
+    <h2>Nova Conta</h2>
+    <form #contaPagarForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput #nome name="nome" ngModel required  minlength="3" maxlength="200">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" matTooltip="Clique no ícone direito para selecionar uma data">
+            <mat-label>Data de Vencimento</mat-label>
+            <input matInput [matDatepicker]="dataVencimento" name="dataVencimento" ngModel required readonly>
+            <mat-datepicker-toggle matSuffix [for]="dataVencimento"></mat-datepicker-toggle>
+            <mat-datepicker #dataVencimento disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" matTooltip="Clique no ícone direito para selecionar uma data">
+            <mat-label>Data de Pagamento</mat-label>
+            <input matInput [matDatepicker]="dataPagamento" name="dataPagamento" ngModel required readonly>
+            <mat-datepicker-toggle matSuffix [for]="dataPagamento"></mat-datepicker-toggle>
+            <mat-datepicker #dataPagamento disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Valor</mat-label>
+            <input matInput #valor type="number" class="example-right-align" required min="0" max="300" name="valorOriginal" ngModel>
+        </mat-form-field>
+        <div matTooltip="Preencha todos os campos para habilitar o botão" [matTooltipDisabled]="contaPagarForm.form.valid">
+            <button type="submit" 
+                mat-raised-button
+                color="primary"
+                [disabled]="!contaPagarForm.form.valid">Salvar</button>
+        </div>
+
+    </form>
+</mat-card>
